@@ -30,3 +30,5 @@ for paso in (1, 16, 1024):
         f"Paso {paso:<4} | "
         f"{tiempo:.2f} ns por elemento"
     )
+
+print("\nReto terminado correctamente.")
