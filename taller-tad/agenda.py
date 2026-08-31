@@ -1,22 +1,123 @@
-# Resultados de las mediciones
+class Agenda:
+    """
+    Representa una agenda de contactos.
 
-## Entorno
+    Los contactos se almacenan ordenados alfabéticamente
+    por nombre.
+    """
 
-- Python: 3.13.15
-- Computador: Windows PC (modelo no identificado por Windows)
+    def __init__(self):
+        """
+        Crea una agenda vacía.
 
-## Mediciones
+        Complejidad: O(1)
+        """
+        self._contactos = []
 
-| Número de contactos | contiene() | Búsqueda ingenua | agregar() + eliminar() |
-|---:|---:|---:|---:|
-| 1.000 | 0,000000800 s (0,8 µs) | 0,000016700 s (16,7 µs) | 0,000002800 s (2,8 µs) |
-| 10.000 | 0,000001200 s (1,2 µs) | 0,000176100 s (176,1 µs) | 0,000007800 s (7,8 µs) |
-| 100.000 | 0,000001400 s (1,4 µs) | 0,002847700 s (2.847,7 µs) | 0,000058400 s (58,4 µs) |
+    def __len__(self) -> int:
+        """
+        Devuelve la cantidad de contactos.
 
-## Interpretación
+        Complejidad: O(1)
+        """
+        return len(self._contactos)
 
-1. El tiempo de `contiene()` aumenta muy poco al pasar de 1.000 a 100.000 contactos. Esto es consistente con una búsqueda binaria de complejidad O(log n).
+    def _buscar_posicion(self, nombre: str) -> int:
+        """
+        Busca mediante búsqueda binaria la posición de un nombre.
 
-2. La búsqueda ingenua aumenta considerablemente al crecer el número de contactos. Al pasar de 10.000 a 100.000 contactos, el tiempo aumenta aproximadamente 16,2 veces, lo cual es consistente con una complejidad O(n).
+        Devuelve la posición donde está el nombre o donde debería
+        insertarse si no existe.
 
-3. La operación `agregar()` + `eliminar()` también aumenta al crecer la cantidad de contactos. Al pasar de 10.000 a 100.000 contactos, el tiempo aumenta aproximadamente 7,5 veces, lo cual es consistente con una complejidad O(n).
+        Complejidad: O(log n)
+        """
+        izquierda = 0
+        derecha = len(self._contactos)
+
+        while izquierda < derecha:
+            medio = (izquierda + derecha) // 2
+
+            if self._contactos[medio][0] < nombre:
+                izquierda = medio + 1
+            else:
+                derecha = medio
+
+        return izquierda
+
+    def contiene(self, nombre: str) -> bool:
+        """
+        Indica si existe un contacto con el nombre dado.
+
+        Complejidad: O(log n)
+        """
+        posicion = self._buscar_posicion(nombre)
+
+        return (
+            posicion < len(self._contactos)
+            and self._contactos[posicion][0] == nombre
+        )
+
+    def telefono_de(self, nombre: str) -> str:
+        """
+        Devuelve el teléfono asociado a un nombre.
+
+        Lanza KeyError si el nombre no existe.
+
+        Complejidad: O(log n)
+        """
+        posicion = self._buscar_posicion(nombre)
+
+        if (
+            posicion >= len(self._contactos)
+            or self._contactos[posicion][0] != nombre
+        ):
+            raise KeyError(nombre)
+
+        return self._contactos[posicion][1]
+
+    def nombres(self) -> list[str]:
+        """
+        Devuelve los nombres ordenados alfabéticamente.
+
+        Complejidad: O(n)
+        """
+        return [contacto[0] for contacto in self._contactos]
+
+    def agregar(self, nombre: str, telefono: str) -> None:
+        """
+        Agrega un contacto o actualiza su teléfono si ya existe.
+
+        Lanza ValueError si el nombre está vacío.
+
+        Complejidad: O(n)
+        """
+        if not nombre:
+            raise ValueError("El nombre no puede estar vacío")
+
+        posicion = self._buscar_posicion(nombre)
+
+        if (
+            posicion < len(self._contactos)
+            and self._contactos[posicion][0] == nombre
+        ):
+            self._contactos[posicion] = (nombre, telefono)
+        else:
+            self._contactos.insert(posicion, (nombre, telefono))
+
+    def eliminar(self, nombre: str) -> None:
+        """
+        Elimina un contacto.
+
+        Lanza KeyError si el nombre no existe.
+
+        Complejidad: O(n)
+        """
+        posicion = self._buscar_posicion(nombre)
+
+        if (
+            posicion >= len(self._contactos)
+            or self._contactos[posicion][0] != nombre
+        ):
+            raise KeyError(nombre)
+
+        self._contactos.pop(posicion)
