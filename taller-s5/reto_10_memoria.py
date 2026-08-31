@@ -39,3 +39,5 @@ tiempo_array = time.perf_counter() - t0
 
 print("sum(lista):", tiempo_lista)
 print("sum(array):", tiempo_array)
+
+print("\nReto terminado correctamente.")
