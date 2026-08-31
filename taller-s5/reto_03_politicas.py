@@ -72,3 +72,5 @@ for nombre, funcion in politicas:
 assert resultados_politicas["capacidad + 1"][0] == 4999950000
 assert resultados_politicas["capacidad + 10"][0] == 499960000
 assert resultados_politicas["capacidad × 2"][0] == 131071
+
+print("\nReto terminado correctamente.")
