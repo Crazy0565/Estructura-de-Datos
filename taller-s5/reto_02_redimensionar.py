@@ -56,3 +56,5 @@ assert b.tamano == 100000
 assert b.capacidad == 131072
 assert b.copias == 131071
 assert b.redim == 17
+
+print("\nReto terminado correctamente.")
