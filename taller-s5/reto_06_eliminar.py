@@ -70,3 +70,5 @@ print("Capacidad final:", d.capacidad)
 
 assert d.tamano == 0
 assert d.capacidad == 1
+
+print("\nReto terminado correctamente.")
