@@ -42,3 +42,5 @@ a.datos[0] = 10
 a.tamano += 1
 
 print(a)
+
+print("\nReto terminado correctamente.")
