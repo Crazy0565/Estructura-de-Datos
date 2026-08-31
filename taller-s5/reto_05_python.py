@@ -32,3 +32,5 @@ for posicion, capacidad in secuencia:
     print(posicion, capacidad)
 
 print("\nPython crece de forma proporcional, no duplicando exactamente.")
+
+print("\nReto terminado correctamente.")
