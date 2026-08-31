@@ -61,3 +61,5 @@ print("Costo promedio:", promedio)
 
 assert maximo == 65537
 assert round(promedio, 5) == 2.31071
+
+print("\nReto terminado correctamente.")
