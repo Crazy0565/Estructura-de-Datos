@@ -71,3 +71,5 @@ for i in range(20000):
 
 print("Copias:", f.copias)
 print("Copias por operación:", f.copias / 20000)
+
+print("\nReto terminado correctamente.")
