@@ -22,13 +22,13 @@
 - Integración y preparación final de la entrega.
 
 ### Juan Felipe Mendez Martinez
-- Sin participación en el desarrollo del trabajo.
+- Situación del estudiante dialogada con el docente.
 
 ### Emmanuel Gomez Gomez
-- Sin participación en el desarrollo del trabajo.
+- Participación y ayuda en la sustentación.
 
 ### Cristhian Alexander Mesa Alvarez
-- Sin participación en el desarrollo del trabajo.
+- Participación y ayuda en la sustentación.
 
 ### Juan Andres Sanchez Rojas
-- Sin participación en el desarrollo del trabajo.
+- Participación y ayuda en la sustentación.
