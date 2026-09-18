@@ -1,10 +1,18 @@
-def bubble_sort(datos, clave):
+﻿from typing import Any, Callable
+
+
+def bubble_sort(
+    datos: list[Any],
+    clave: Callable[[Any], Any]
+) -> list[Any]:
     """
     Ordena los elementos utilizando Bubble Sort.
 
-    Mejor caso: O(n)
-    Caso promedio: O(n²)
-    Peor caso: O(n²)
+    Complejidad:
+        Mejor caso: O(n) tiempo.
+        Caso promedio: O(n²) tiempo.
+        Peor caso: O(n²) tiempo.
+        Espacio: O(1).
     """
     n = len(datos)
 
@@ -22,12 +30,17 @@ def bubble_sort(datos, clave):
     return datos
 
 
-def quick_sort(datos, clave):
+def quick_sort(
+    datos: list[Any],
+    clave: Callable[[Any], Any]
+) -> list[Any]:
     """
     Ordena los elementos utilizando QuickSort.
 
-    Caso promedio: O(n log n)
-    Peor caso: O(n²)
+    Complejidad:
+        Caso promedio: O(n log n) tiempo.
+        Peor caso: O(n²) tiempo.
+        Espacio: O(n) debido a las listas auxiliares y la recursión.
     """
     if len(datos) <= 1:
         return datos

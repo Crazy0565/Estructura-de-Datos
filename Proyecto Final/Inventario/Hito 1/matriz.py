@@ -1,8 +1,21 @@
-class MatrizBodega:
-    """Matriz escalable para almacenar las ubicaciones de la bodega."""
+﻿class MatrizBodega:
+    """
+    Representa una matriz cuadrada escalable para las ubicaciones
+    de productos dentro de la bodega.
+
+    Complejidad:
+        Acceso y modificación normal: O(1).
+        Redimensionamiento: O(n²).
+    """
 
     def __init__(self, tamaño_inicial: int = 10):
-        """Crea una matriz cuadrada inicial."""
+        """
+        Crea una matriz cuadrada inicial.
+
+        Complejidad:
+            Tiempo: O(n²).
+            Espacio: O(n²).
+        """
         if tamaño_inicial <= 0:
             raise ValueError("El tamaño debe ser mayor que cero.")
 
@@ -19,8 +32,9 @@ class MatrizBodega:
         Si la posición está fuera de la matriz, esta se amplía.
 
         Complejidad:
-            O(1) normalmente.
-            O(n²) cuando se redimensiona.
+            Tiempo: O(1) normalmente.
+            Tiempo: O(n²) cuando se redimensiona.
+            Espacio: O(n²) cuando se redimensiona.
         """
         if fila < 0 or columna < 0:
             raise IndexError("La posición no puede ser negativa.")
@@ -33,18 +47,22 @@ class MatrizBodega:
 
     def obtener(self, fila: int, columna: int):
         """
-        Obtiene un producto de una ubicación.
+        Obtiene el producto ubicado en una posición.
 
-        Complejidad: O(1).
+        Complejidad:
+            Tiempo: O(1).
+            Espacio: O(1).
         """
         self._validar_posicion(fila, columna)
         return self.datos[fila][columna]
 
     def eliminar(self, fila: int, columna: int):
         """
-        Elimina un producto de una ubicación.
+        Elimina el producto de una ubicación y devuelve el producto eliminado.
 
-        Complejidad: O(1).
+        Complejidad:
+            Tiempo: O(1).
+            Espacio: O(1).
         """
         self._validar_posicion(fila, columna)
 
@@ -57,7 +75,9 @@ class MatrizBodega:
         """
         Amplía la matriz conservando los productos existentes.
 
-        Complejidad: O(n²).
+        Complejidad:
+            Tiempo: O(n²).
+            Espacio: O(n²).
         """
         nueva_matriz = [
             [None for _ in range(nuevo_tamaño)]
@@ -72,7 +92,13 @@ class MatrizBodega:
         self.tamaño = nuevo_tamaño
 
     def _validar_posicion(self, fila: int, columna: int) -> None:
-        """Verifica que la posición exista."""
+        """
+        Verifica que una posición se encuentre dentro de la matriz.
+
+        Complejidad:
+            Tiempo: O(1).
+            Espacio: O(1).
+        """
         if (
             fila < 0
             or columna < 0

@@ -1,5 +1,11 @@
-class Producto:
-    """Representa un producto almacenado en el inventario."""
+﻿class Producto:
+    """
+    Representa un producto almacenado en el inventario.
+
+    Complejidad:
+        Tiempo de creación: O(1).
+        Espacio: O(1).
+    """
 
     def __init__(
         self,
@@ -14,6 +20,13 @@ class Producto:
         pasillo: int,
         estante: int
     ):
+        """
+        Inicializa un producto con sus datos de inventario.
+
+        Complejidad:
+            Tiempo: O(1).
+            Espacio: O(1).
+        """
         self.id = id_producto
         self.nombre = nombre
         self.categoria = categoria
@@ -26,7 +39,13 @@ class Producto:
         self.estante = estante
 
     def __str__(self) -> str:
-        """Devuelve una representación legible del producto."""
+        """
+        Devuelve una representación legible del producto.
+
+        Complejidad:
+            Tiempo: O(1).
+            Espacio: O(1).
+        """
         return (
             f"ID: {self.id} | "
             f"Nombre: {self.nombre} | "

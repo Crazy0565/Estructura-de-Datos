@@ -1,8 +1,20 @@
-class ArregloDinamico:
-    """Implementa un arreglo dinámico con crecimiento automático."""
+﻿class ArregloDinamico:
+    """
+    Implementa un arreglo dinámico con crecimiento automático.
+
+    Complejidad:
+        Tiempo: O(1) para acceso.
+        Espacio: O(n), donde n es la capacidad del arreglo.
+    """
 
     def __init__(self, capacidad_inicial: int = 10):
-        """Inicializa el arreglo con la capacidad indicada."""
+        """
+        Inicializa el arreglo con la capacidad indicada.
+
+        Complejidad:
+            Tiempo: O(n).
+            Espacio: O(n).
+        """
         if capacidad_inicial <= 0:
             raise ValueError("La capacidad debe ser mayor que cero.")
 
@@ -11,11 +23,23 @@ class ArregloDinamico:
         self.datos = [None] * self.capacidad
 
     def __len__(self) -> int:
-        """Devuelve la cantidad de elementos almacenados. O(1)."""
+        """
+        Devuelve la cantidad de elementos almacenados.
+
+        Complejidad:
+            Tiempo: O(1).
+            Espacio: O(1).
+        """
         return self.tamaño
 
     def __getitem__(self, indice: int):
-        """Permite acceder a un elemento por su posición. O(1)."""
+        """
+        Permite acceder a un elemento por su posición.
+
+        Complejidad:
+            Tiempo: O(1).
+            Espacio: O(1).
+        """
         if indice < 0 or indice >= self.tamaño:
             raise IndexError("Índice fuera de rango.")
 
@@ -26,8 +50,9 @@ class ArregloDinamico:
         Agrega un elemento al final del arreglo.
 
         Complejidad:
-            O(1) amortizado.
-            O(n) cuando es necesario redimensionar.
+            Tiempo: O(1) amortizado.
+            Tiempo: O(n) cuando se redimensiona.
+            Espacio: O(n) cuando se redimensiona.
         """
         if self.tamaño == self.capacidad:
             self._redimensionar()
@@ -36,7 +61,13 @@ class ArregloDinamico:
         self.tamaño += 1
 
     def _redimensionar(self) -> None:
-        """Duplica la capacidad del arreglo. O(n)."""
+        """
+        Duplica la capacidad del arreglo y conserva sus elementos.
+
+        Complejidad:
+            Tiempo: O(n).
+            Espacio: O(n).
+        """
         nueva_capacidad = self.capacidad * 2
         nuevos_datos = [None] * nueva_capacidad
 

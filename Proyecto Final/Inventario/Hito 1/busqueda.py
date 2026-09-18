@@ -1,8 +1,17 @@
-def busqueda_lineal(datos, valor, clave):
-    """
-    Busca un elemento recorriendo el arreglo secuencialmente.
+﻿from typing import Any, Callable, Iterable, Optional
 
-    Complejidad: O(n).
+
+def busqueda_lineal(
+    datos: Iterable[Any],
+    valor: Any,
+    clave: Callable[[Any], Any]
+) -> Optional[Any]:
+    """
+    Busca un elemento recorriendo los datos secuencialmente.
+
+    Complejidad:
+        Tiempo: O(n).
+        Espacio: O(1).
     """
     for elemento in datos:
         if clave(elemento) == valor:
@@ -11,13 +20,19 @@ def busqueda_lineal(datos, valor, clave):
     return None
 
 
-def busqueda_binaria(datos, valor, clave):
+def busqueda_binaria(
+    datos: list[Any],
+    valor: Any,
+    clave: Callable[[Any], Any]
+) -> Optional[Any]:
     """
     Busca un elemento mediante búsqueda binaria.
 
     Los datos deben estar ordenados según la misma clave.
 
-    Complejidad: O(log n).
+    Complejidad:
+        Tiempo: O(log n).
+        Espacio: O(1).
     """
     izquierda = 0
     derecha = len(datos) - 1
