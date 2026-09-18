@@ -1,6 +1,46 @@
+﻿import csv
+
 from arreglo import ArregloDinamico
 from matriz import MatrizBodega
 from producto import Producto
+
+
+def cargar_productos_csv(ruta, inventario, bodega):
+    """
+    Carga productos desde un archivo CSV.
+
+    Complejidad:
+        O(n) tiempo, O(n) espacio.
+    """
+    cantidad_cargada = 0
+
+    with open(ruta, "r", encoding="utf-8-sig") as archivo:
+        lector = csv.DictReader(archivo)
+
+        for fila in lector:
+            producto = Producto(
+                int(fila["id"]),
+                fila["nombre"],
+                fila["categoria"],
+                int(fila["cantidad"]),
+                int(fila["tiempo_produccion"]),
+                fila["fecha_produccion"],
+                fila["fecha_vencimiento"],
+                float(fila["precio"]),
+                int(fila["pasillo"]),
+                int(fila["estante"])
+            )
+
+            inventario.agregar(producto)
+            bodega.asignar(
+                producto.pasillo,
+                producto.estante,
+                producto
+            )
+
+            cantidad_cargada += 1
+
+    return cantidad_cargada
 
 
 def mostrar_menu():
@@ -11,7 +51,8 @@ def mostrar_menu():
     print("3. Eliminar producto")
     print("4. Consultar ubicación")
     print("5. Mostrar información")
-    print("6. Salir")
+    print("6. Cargar productos desde CSV")
+    print("7. Salir")
 
 
 def agregar_producto(inventario, bodega):
@@ -24,8 +65,8 @@ def agregar_producto(inventario, bodega):
     fecha_produccion = input("Fecha de producción (YYYY-MM-DD): ")
     fecha_vencimiento = input("Fecha de vencimiento (YYYY-MM-DD): ")
     precio = float(input("Precio: "))
-    pasillo = int(input("Pasillo (0-99): "))
-    estante = int(input("Estante (0-99): "))
+    pasillo = int(input("Pasillo: "))
+    estante = int(input("Estante: "))
 
     producto = Producto(
         id_producto,
@@ -102,8 +143,8 @@ def mostrar_informacion(inventario, bodega):
     print("\n===== INFORMACIÓN =====")
     print(f"Productos almacenados: {len(inventario)}")
     print(f"Capacidad del arreglo: {inventario.capacidad}")
-    print(f"Matriz de bodega: {bodega.filas}x{bodega.columnas}")
-    print(f"Ubicaciones disponibles: {bodega.filas * bodega.columnas}")
+    print(f"Matriz de bodega: {bodega.tamaño}x{bodega.tamaño}")
+    print(f"Ubicaciones disponibles: {bodega.tamaño * bodega.tamaño}")
 
 
 def main():
@@ -132,6 +173,17 @@ def main():
             mostrar_informacion(inventario, bodega)
 
         elif opcion == "6":
+            try:
+                cantidad = cargar_productos_csv(
+                    "productos.csv",
+                    inventario,
+                    bodega
+                )
+                print(f"Se cargaron {cantidad} productos correctamente.")
+            except FileNotFoundError:
+                print("No se encontró el archivo productos.csv.")
+
+        elif opcion == "7":
             print("Saliendo del sistema...")
             break
 
@@ -141,3 +193,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

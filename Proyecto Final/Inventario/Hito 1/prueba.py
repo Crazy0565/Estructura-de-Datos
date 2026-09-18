@@ -1,4 +1,5 @@
-import time
+﻿import time
+import random
 
 from producto import Producto
 from arreglo import ArregloDinamico
@@ -95,6 +96,47 @@ def probar_ordenamientos(productos):
     return tiempo_bubble, tiempo_quick
 
 
+def probar_contra_sorted():
+    """
+    Compara QuickSort con sorted() usando 1000 entradas aleatorias.
+
+    Verifica que ambos métodos produzcan el mismo orden.
+    """
+    print("\n===== COMPARACIÓN CON sorted() =====")
+
+    productos = [
+        crear_producto(i)
+        for i in range(1000)
+    ]
+
+    random.shuffle(productos)
+
+    clave = lambda p: p.id
+
+    copia_quick = productos.copy()
+
+    inicio = time.perf_counter()
+    resultado_quick = quick_sort(copia_quick, clave)
+    tiempo_quick = time.perf_counter() - inicio
+
+    inicio = time.perf_counter()
+    resultado_sorted = sorted(productos, key=clave)
+    tiempo_sorted = time.perf_counter() - inicio
+
+    orden_correcto = [
+        producto.id for producto in resultado_quick
+    ] == [
+        producto.id for producto in resultado_sorted
+    ]
+
+    print(f"Entradas evaluadas: 1000")
+    print(f"QuickSort:           {tiempo_quick:.8f} s")
+    print(f"sorted():            {tiempo_sorted:.8f} s")
+    print(f"Orden correcto:      {'SI' if orden_correcto else 'NO'}")
+
+    return orden_correcto
+
+
 if __name__ == "__main__":
 
     cantidades = [1000, 5000, 10000, 50000, 100000]
@@ -120,7 +162,6 @@ if __name__ == "__main__":
         print(f"Búsqueda binaria: {binaria:.9f} s")
         print(f"Capacidad final:  {capacidad}")
 
-        # Bubble Sort puede tardar demasiado con cantidades grandes.
         if cantidad <= 10000:
             bubble, quick = probar_ordenamientos(productos)
 
@@ -128,7 +169,7 @@ if __name__ == "__main__":
             print(f"QuickSort:        {quick:.6f} s")
         else:
             print("Bubble Sort:      omitido (> 10.000)")
-            
+
             inicio = time.perf_counter()
             copia = productos.copy()
             quick_sort(copia, lambda p: p.fecha_vencimiento)
@@ -137,3 +178,44 @@ if __name__ == "__main__":
             print(f"QuickSort:        {quick:.6f} s")
 
     probar_matriz()
+    probar_contra_sorted()
+def benchmark_lista_vs_arreglo():
+    """Compara ArregloDinamico contra list de Python."""
+    print("\n===== BENCHMARK: ArregloDinamico VS list =====")
+
+    cantidades = [1000, 5000, 10000, 50000, 100000]
+
+    for cantidad in cantidades:
+        productos = [crear_producto(i) for i in range(cantidad)]
+
+        inicio = time.perf_counter()
+        arreglo = ArregloDinamico()
+        for producto in productos:
+            arreglo.agregar(producto)
+        tiempo_arreglo = time.perf_counter() - inicio
+
+        inicio = time.perf_counter()
+        lista = []
+        for producto in productos:
+            lista.append(producto)
+        tiempo_lista = time.perf_counter() - inicio
+
+        indice = cantidad // 2
+
+        inicio = time.perf_counter()
+        arreglo[indice]
+        acceso_arreglo = time.perf_counter() - inicio
+
+        inicio = time.perf_counter()
+        lista[indice]
+        acceso_lista = time.perf_counter() - inicio
+
+        print(f"\n--- {cantidad:,} elementos ---")
+        print(f"Inserción ArregloDinamico: {tiempo_arreglo:.8f} s")
+        print(f"Inserción list:            {tiempo_lista:.8f} s")
+        print(f"Acceso ArregloDinamico:    {acceso_arreglo:.9f} s")
+        print(f"Acceso list:               {acceso_lista:.9f} s")
+
+
+
+benchmark_lista_vs_arreglo()
