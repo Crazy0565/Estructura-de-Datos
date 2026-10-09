@@ -18,6 +18,3 @@ En dos pasadas se entra desde la cabeza dos veces: una para contar y otra para l
 
 En la lista sencilla, antes de cambiar `actual.siguiente` hay que guardar el siguiente nodo en una variable, porque si no se pierde el resto de la cadena. En la doble, al invertir se intercambian los enlaces `siguiente` y `anterior` de cada nodo.
 
-## Reparto del trabajo
-
-Trabajo realizado individualmente: implementación de las dos estructuras, pruebas, mediciones y redacción de este archivo.
