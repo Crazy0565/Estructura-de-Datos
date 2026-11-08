@@ -28,21 +28,3 @@
 | Integración | Índice AVL, gestión de urgencias, despacho por olas, pestaña «Ruta» y arranque mediante `python iniciar.py`. |
 | Demostración | Ejecución de `python demostracion.py` para verificar FEFO y el comportamiento de la ruta. |
 | Documentación | Informe, README, distribución del trabajo, anexo de IA y guía de sustentación. |
-
-## Uso de herramientas de IA
-
-La herramienta de IA se utilizó como apoyo técnico para consultar, proponer, generar fragmentos de implementación, interpretar errores y ayudar a revisar resultados. No reemplazó la definición de los requerimientos ni las decisiones del estudiante. La herramienta también generó una parte importante del código y de las pruebas de esta entrega; este alcance se declara expresamente en el anexo correspondiente.
-
-## Revisión cruzada de pruebas
-
-La guía establece que la persona que implementa un módulo no debe ser la misma que realiza su revisión de pruebas. En esta entrega, la herramienta de IA participó tanto en la generación de módulos como en la elaboración de sus pruebas, por lo que esa revisión independiente debe quedar registrada por un integrante distinto.
-
-| Módulo | Implementación | Persona que realizó la revisión independiente |
-|---|---|---|
-
-## Porcentaje de esfuerzo y aprobación
-
-Los porcentajes deben representar el trabajo efectivamente realizado por cada integrante y ser acordados por el equipo. No deben asignarse automáticamente a partir de la cantidad de archivos o líneas de código.
-
-| Integrante | Porcentaje de esfuerzo | Aprueba |
-|---|---:|---|
