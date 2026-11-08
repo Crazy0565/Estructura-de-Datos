@@ -1,0 +1,24 @@
+[project]
+name = "inventario-bodega"
+version = "3.0.0"
+description = "Sistema de inventario y despacho de bodega con estructuras de datos propias (IS061)"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "PERF"]
+ignore = ["E501"]  # el largo de línea lo controla `ruff format`
+
+[tool.ruff.lint.per-file-ignores]
+# Las pruebas de la ventana importan después de pytest.importorskip("tkinter").
+"tests/interfaces/test_gui*.py" = ["E402"]
+# Las mediciones llaman a cada closure dentro de la misma iteración (B023 no aplica)
+# y los bucles con append son justo lo que se está cronometrando (PERF402 no aplica).
+"mediciones/*.py" = ["B023", "PERF402"]

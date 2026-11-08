@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+venv/
+.venv/
+*.egg-info/
+.DS_Store
+
+# Estado y datos generados (se recrean con `python iniciar.py`)
+inventario.db
+datos/generados/

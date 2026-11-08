@@ -1,0 +1,14 @@
+Demostración (semilla 2026, 10000 productos, tiempo 163 s)
+
+1. FEFO (despacho respeta vencimiento)
+   pedidos despachados verificados: 29596
+   rechazados (sin stock, no se verifican): 404
+   violaciones de FEFO: 0
+   RESULTADO: CUMPLE (100 %)
+
+2. Ruta de recolección (meta: >= 20 % menos distancia)
+   olas de  3 pedidos: ahorro medio 9.9%, peor ola 0.0% -> NO cumple
+   olas de  5 pedidos: ahorro medio 21.8%, peor ola 0.0% -> cumple
+   olas de 10 pedidos: ahorro medio 40.7%, peor ola 24.1% -> cumple
+   olas de 20 pedidos: ahorro medio 49.6%, peor ola 43.2% -> cumple
+   RESULTADO con ola típica de 10: CUMPLE (40.7%)
